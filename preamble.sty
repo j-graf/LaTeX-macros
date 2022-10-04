@@ -1,0 +1,225 @@
+%% use \input{preamble.tex}
+
+\ProvidesPackage{preamble}
+
+\usepackage[leqno]{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{import}
+%\usepackage{enumitem}
+\usepackage{enumerate}
+\usepackage{bm}
+\usepackage{dsfont}
+\usepackage{tikz-cd}
+\usepackage{stmaryrd}
+
+%% item numbering  %%
+\renewcommand{\theequation}{\arabic{section}.\arabic{equation}}
+\renewcommand{\thefigure}{\arabic{section}.\arabic{figure}}
+\renewcommand{\thetable}{\arabic{section}.\arabic{table}}
+
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+\numberwithin{table}{section}
+
+%% Number items consecutively within sections, as in Definition 2.1,
+%% Lemma 2.2, Theorem 2.3, Corollary 2.4, Remark 2.5
+
+%% These environments are set in italic type
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{conjecture}[theorem]{Conjecture}
+
+\newtheorem*{theorem*}{Theorem}
+
+%% These environments are set in Roman (plain) type
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{recall}[theorem]{Recall}
+
+
+\newtheorem*{definition*}{Definition}
+
+%% Don't number \subsubsections
+\renewcommand{\thesubsubsection}{\hskip -1em}
+
+%% Font declarations %%
+\newcommand{\Number}[1]{\mathbf{#1}}
+\newcommand{\Vector}[1][]{\mathbf{#1}}
+%\newcommand{\Script}[1]{\mathscr{#1}}% Requires the mathrsfs package
+
+%% Document macros %%
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\e}{\Vector{e}}
+
+%% Symbol abbreviations 
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\genby}[1]{\left\langle#1\right\rangle}
+\newcommand{\del}{\partial}
+\newcommand{\longto}{\longrightarrow}
+\newcommand{\dual}[1]{\widehat{#1}}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\brak}[2]{\left\langle#1,#2\right\rangle}
+\newcommand{\binomsq}[2]{\begin{bmatrix}#1\\#2\end{bmatrix}}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\exterior}{\mathchoice{{\textstyle\bigwedge}}%
+    {{\bigwedge}}%
+    {{\textstyle\wedge}}%
+    {{\scriptstyle\wedge}}}
+\newcommand\restr[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+\newcommand{\of}{\circ}
+
+%% Calculus commands
+\newcommand{\dx}[1][]{\mathop{d^{#1}x}}
+\newcommand{\dy}[1][]{\mathop{d^{#1}y}}
+\newcommand{\dz}[1][]{\mathop{d^{#1}z}}
+\newcommand{\df}[1][]{\mathop{d^{#1}f}}
+\newcommand{\dt}[1][]{\mathop{d^{#1}t}}
+\newcommand{\dd}[2][]{\mathop{d^{#1}#2}}
+\newcommand{\fracpart}[2]{\frac{\partial{#1}}{\partial{#2}}}
+\newcommand{\fracparttwo}[3]{\frac{\partial^2{#1}}{\partial{#2}\partial{#3}}}
+\newcommand{\fracpartthree}[4]{\frac{\partial^3{#1}}{\partial{#2}\partial{#3}\partial{#4}}}
+%\newcommand{\fracpartn}[3]{\frac{\partial^{#1}{#2}}{\partial{#3}}}
+
+
+%% Text operators, like \exp, \log, \cos, etc.
+\DeclareMathOperator{\re}{Re}
+%\DeclareMathOperator{\im}{Im}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\spanset}{span}
+\DeclareMathOperator{\row}{row}
+\DeclareMathOperator{\column}{column}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\nullity}{nullity}
+\DeclareMathOperator{\stab}{Stab}
+\DeclareMathOperator{\Endo}{End}
+\DeclareMathOperator{\Auto}{Aut}
+\DeclareMathOperator{\codim}{codim}
+\DeclareMathOperator{\Inn}{Inn}
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\charac}{char}
+\DeclareMathOperator{\ch}{ch}
+\DeclareMathOperator{\ad}{ad}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Der}{Der}
+\DeclareMathOperator{\gr}{gr}
+\DeclareMathOperator{\filtF}{F}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\SL}{SL}
+
+%polytopes
+\DeclareMathOperator{\aff}{aff}
+\DeclareMathOperator{\conv}{conv}
+\DeclareMathOperator{\pyr}{pyr}
+\DeclareMathOperator{\bipyr}{bipyr}
+\DeclareMathOperator{\prism}{prism}
+\DeclareMathOperator{\relint}{relint}
+\DeclareMathOperator{\cone}{cone}
+\DeclareMathOperator{\proj}{proj}
+\DeclareMathOperator{\elim}{elim}
+\DeclareMathOperator{\lineal}{lineal}
+\DeclareMathOperator{\rec}{rec}
+\DeclareMathOperator{\homog}{homog}
+\DeclareMathOperator{\vertset}{vert}
+\DeclareMathOperator{\interior}{int}
+\DeclareMathOperator{\aDep}{a-Dep}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\sign}{sign}
+\DeclareMathOperator{\SIGN}{SIGN}
+\DeclareMathOperator{\aVal}{a-Val}
+\DeclareMathOperator{\Dep}{Dep}
+\DeclareMathOperator{\Val}{Val}
+\DeclareMathOperator{\MIN}{MIN}
+\DeclareMathOperator{\st}{st}
+
+%lie alg
+\DeclareMathOperator{\Rad}{Rad}
+\DeclareMathOperator{\wt}{wt}
+\DeclareMathOperator{\hgt}{ht}
+
+%alg geom
+\DeclareMathOperator{\rad}{rad}
+\DeclareMathOperator{\inmon}{in}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\HS}{HS}
+\DeclareMathOperator{\HP}{HP}
+\DeclareMathOperator{\degree}{degree}
+\newcommand{\mbf}[1]{\mathbf{#1}}
+\newcommand{\mbb}[1]{\mathbb{#1}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\cV}{\mc{V}}
+\newcommand{\cG}{\mc{G}}
+\newcommand{\cA}{\mc{A}}
+\newcommand{\cB}{\mc{B}}
+\newcommand{\cC}{\mc{C}}
+\DeclareMathOperator{\Ass}{Ass}
+\newcommand{\mbfx}{\mbf{x}}
+\newcommand{\mbfa}{\mbf{a}}
+\newcommand{\mbfb}{\mbf{b}}
+\newcommand{\mbfc}{\mbf{c}}
+\newcommand{\mbfp}{\mbf{p}}
+\newcommand{\mbfw}{\mbf{w}}
+\newcommand{\mbfy}{\mbf{y}}
+\DeclareMathOperator{\image}{image}
+\DeclareMathOperator{\Res}{Res}
+\DeclareMathOperator{\Syl}{Syl}
+\DeclareMathOperator{\Sing}{Sing}
+\DeclareMathOperator{\LT}{LT}
+\DeclareMathOperator{\Mon}{Mon}
+\DeclareMathOperator{\Int}{Int}
+
+%cluster alg
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\Trop}{Trop}
+\DeclareMathOperator{\card}{card}
+
+%abs alg
+\newcommand{\vphi}{\varphi}
+\newcommand{\normaleq}{\unlhd}
+\newcommand{\modelt}[1]{\overline{#1}}
+\DeclareMathOperator{\Tor}{Tor}
+\DeclareMathOperator{\Ann}{Ann}
+\newcommand{\rarrow}{\rightarrow}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\Inf}{Inf}
+\DeclareMathOperator{\Cor}{Cor}
+\newcommand{\ox}{\otimes}
+
+
+
+%% Miscellaneous formatting/spacing commands
+\newcommand{\Neg}{\phantom{-}} % Invisible minus sign, for alignment
+\newcommand{\dsp}{\displaystyle}
+%\newcommand{\blankanswer}{\underline{\hspace{20pt}}}
+%\newcommand{\blankanswer}{\rule{1cm}{0.15mm}}
+\newcommand{\ankianswer}{\rule{1cm}{0.15mm}}
+%\newcommand{\ltanki}{<}
+
+%\makeatletter \let\import@path@fix\@firstofone \makeatother
+
+\usepackage{subfiles}
